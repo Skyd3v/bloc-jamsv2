@@ -30,6 +30,21 @@
      ]
  };
 
+var albumBloc= {
+     title: 'The Front-End',
+     artist: 'Phil Spitler',
+     label: 'Bloc',
+     year: '2016',
+     albumArtUrl: 'assets/images/album_covers/09.png',
+     songs: [
+         { title: 'Where are my Assignments?', duration: '1:01' },
+         { title: 'The Github way', duration: '5:01' },
+         { title: 'The MEAN life', duration: '3:21'},
+         { title: 'The Prototype', duration: '3:14' },
+         { title: 'Saturday Coding Jam', duration: '2:15'}
+     ]
+ };
+
  var createSongRow = function(songNumber, songName, songLength) {
      var template =
         '<tr class="album-view-song-item">'
@@ -42,15 +57,14 @@
      return template;
  };
 
- var setCurrentAlbum = function(album) {
-     // #1
-     var albumTitle = document.getElementsByClassName('album-view-title')[0];
+var albumTitle = document.getElementsByClassName('album-view-title')[0];
      var albumArtist = document.getElementsByClassName('album-view-artist')[0];
      var albumReleaseInfo = document.getElementsByClassName('album-view-release-info')[0];
      var albumImage = document.getElementsByClassName('album-cover-art')[0];
      var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
- 
-     // #2
+
+ var setCurrentAlbum = function(album) {
+ // #2
      albumTitle.firstChild.nodeValue = album.title;
      albumArtist.firstChild.nodeValue = album.artist;
      albumReleaseInfo.firstChild.nodeValue = album.year + ' ' + album.label;
@@ -67,4 +81,14 @@
  
  window.onload = function() {
      setCurrentAlbum(albumPicasso);
+     
+     var album = [albumPicasso,albumMarconi,albumBloc];
+     var index = 1;
+     albumImage.addEventListener("click", function(event) {
+         setCurrentAlbum(album[index]);
+         index++
+         if (index == album.length) {
+             index = 0;
+         }
+     });
  };
