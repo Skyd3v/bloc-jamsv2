@@ -24,7 +24,7 @@ var setSong = function(songNumber) {
 		preload: true
 	});
 	
-	setvolume(currentVolume);
+	setVolume(currentVolume);
 };
 
 var setVolume = function(volume) {
